@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -24,6 +25,17 @@ export class PainelController {
   async obterTodos() {
     const painel = await this.repo.obterTodos();
     return painel;
+  }
+
+  @Get(':id/indicadores')
+  async obterIndicadores(@Param('id') id: string) {
+    const painelId = parseInt(id, 10);
+    if (isNaN(painelId)) {
+      throw new BadRequestException('ID inválido'); // Adicione tratamento para ID inválido
+    }
+
+    const indicadores = await this.repo.obterIndicadores(painelId);
+    return indicadores;
   }
 
   @Patch(':id')

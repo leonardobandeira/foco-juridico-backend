@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/db/prisma.service';
 import Indicador from './indicador.entity';
+import tipoMeta from './tipoMeta.entity';
 
 @Injectable()
 export class IndicadorRepository {
@@ -8,6 +9,10 @@ export class IndicadorRepository {
 
   async obterTodos() {
     return this.prismaService.indicador.findMany();
+  }
+
+  async obterTipoMeta() {
+    return this.prismaService.tipoMeta.findMany();
   }
 
   async obterPorId(id: number) {

@@ -26,6 +26,12 @@ export class IndicadorController {
     return indicador;
   }
 
+  @Get('/metas')
+  async obterTipoMeta() {
+    const tipoMeta = await this.repo.obterTipoMeta();
+    return tipoMeta;
+  }
+
   @Patch(':id')
   async atualizar(@Param('id') id: string, @Body() indicador: Indicador) {
     const indicadorAtualizado = await this.repo.atualizar({
