@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,14 +7,77 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Constantes presetadas
+model TipoUsuario {
+  id       Int       @id @default(autoincrement())
+  nome     String    @unique
+  usuarios Usuario[]
+}
+
+model TipoIndicador {
+  id          Int         @id @default(autoincrement())
+  nome        String      @unique
+  indicadores Indicador[]
+}
+
+model TipoMeta {
+  id      Int      @id @default(autoincrement())
+  nome    String   @unique
+  simbolo String
+  alertas Alerta[]
+}
+
+// Entidades
+model Grupo {
+  id       Int       @id @default(autoincrement())
+  nome     String
+  usuarios Usuario[]
+  paineis  Painel[]
+}
+
 model Usuario {
-  uid       Int
-  nome      String
-  email     String  @unique
-  telefone  String
-  cargo     String
-  descricao String
-  status    Boolean @default(true)
-  tipo      Int     @default(1)
-  grupo     Int
+  id            Int         @id @default(autoincrement())
+  nome          String
+  email         String      @unique
+  telefone      String
+  cargo         String
+  descricao     String
+  status        Boolean     @default(true)
+  grupoId       Int
+  grupo         Grupo       @relation(fields: [grupoId], references: [id])
+  tipoUsuarioId Int
+  tipoUsuario   TipoUsuario @relation(fields: [tipoUsuarioId], references: [id])
+  alertas       Alerta[]
+}
+
+model Painel {
+  id          Int         @id @default(autoincrement())
+  nome        String
+  descricao   String
+  endereco    String
+  grupoId     Int
+  grupo       Grupo       @relation(fields: [grupoId], references: [id])
+  indicadores Indicador[]
+}
+
+model Indicador {
+  id              Int           @id @default(autoincrement())
+  nome            String
+  tipoIndicadorId Int
+  tipoIndicador   TipoIndicador @relation(fields: [tipoIndicadorId], references: [id])
+  painelId        Int
+  painel          Painel        @relation(fields: [painelId], references: [id])
+  alertas         Alerta[]
+}
+
+model Alerta {
+  id          Int       @id @default(autoincrement())
+  nome        String
+  frequencia  Int
+  usuarioId   Int
+  usuario     Usuario   @relation(fields: [usuarioId], references: [id])
+  indicadorId Int
+  indicador   Indicador @relation(fields: [indicadorId], references: [id])
+  tipoMetaId  Int
+  tipoMeta    TipoMeta  @relation(fields: [tipoMetaId], references: [id])
 }

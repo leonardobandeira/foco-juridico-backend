@@ -10,10 +10,10 @@ export class UsuarioRepository {
     return this.prismaService.usuario.findMany();
   }
 
-  async obterPorEmail(email: string) {
+  async obterPorId(id: number) {
     return this.prismaService.usuario.findUnique({
       where: {
-        email,
+        id,
       },
     });
   }
@@ -28,16 +28,16 @@ export class UsuarioRepository {
     if (!usuario.id) throw new Error('Usuário sem ID');
     return this.prismaService.usuario.update({
       where: {
-        email: usuario.email,
+        id: usuario.id,
       },
       data: usuario as any,
     });
   }
 
-  async deletar(email:string) {
+  async deletar(id:number) {
     return this.prismaService.usuario.delete({
       where: {
-        email,
+        id,
       },
     });
   }

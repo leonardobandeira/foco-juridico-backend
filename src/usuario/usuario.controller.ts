@@ -36,13 +36,13 @@ export class UsuarioController {
   }
 
   @Get(':id')
-  async obterPorEmail(@Param('email') email: string) {
-    const usuario = await this.repo.obterPorEmail(email);
+  async obterPorId(@Param('id') id: string) {
+    const usuario = await this.repo.obterPorId(+id);
     return usuario;
   }
 
   @Delete(':id')
-  async deletar(@Param('email') email: string) {
-    await this.repo.deletar(email);
+  async deletar(@Param('id') id: string) {
+    await this.repo.deletar(+id);
   }
 }
