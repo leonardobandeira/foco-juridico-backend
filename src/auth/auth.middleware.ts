@@ -23,7 +23,6 @@ export class AuthMiddleware implements NestMiddleware {
     this.defaultApp = admin.initializeApp({
       credential: admin.credential.cert(firebaseConfig),
     });
-
   }
 
   use(req: any, res: Response, next: () => void) {
