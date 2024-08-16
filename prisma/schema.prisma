@@ -7,13 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Constantes presetadas
+// Constantes pre-setadas
 model TipoUsuario {
   id       Int       @id @default(autoincrement())
   nome     String    @unique
   usuarios Usuario[]
 }
 
+// O indicador pode ser numerico, percentual ...
 model TipoIndicador {
   id          Int         @id @default(autoincrement())
   nome        String      @unique
@@ -73,11 +74,12 @@ model Indicador {
 model Alerta {
   id          Int       @id @default(autoincrement())
   nome        String
+  valor       Int     
   frequencia  Int
   usuarioId   Int
   usuario     Usuario   @relation(fields: [usuarioId], references: [id])
-  indicadorId Int
-  indicador   Indicador @relation(fields: [indicadorId], references: [id])
   tipoMetaId  Int
   tipoMeta    TipoMeta  @relation(fields: [tipoMetaId], references: [id])
+  indicadorId Int
+  indicador   Indicador @relation(fields: [indicadorId], references: [id])
 }

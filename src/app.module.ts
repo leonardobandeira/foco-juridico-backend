@@ -6,9 +6,10 @@ import { DbModule } from './db/db.module';
 import { PainelModule } from './painel/painel.module';
 import { IndicadorModule } from './indicador/indicador.module';
 import { AuthMiddleware } from './auth/auth.middleware';
+import { AlertaModule } from './alerta/alerta.module';
 
 @Module({
-  imports: [UsuarioModule, PainelModule, IndicadorModule, DbModule],
+  imports: [UsuarioModule, PainelModule, IndicadorModule, AlertaModule, DbModule, ],
   controllers: [AppController],
   providers: [AppService],
 })
