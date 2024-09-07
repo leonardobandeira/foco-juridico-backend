@@ -8,18 +8,18 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+  const config = new DocumentBuilder()
+    .setTitle('Documentação da API Foco Jurídico')
+    .setDescription('API destinada a integração com o App Foco Jurídico')
     .setVersion('1.0')
-    .addTag('cats')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('doc', app, document);
 
-  // Habilita CORS para todas as origens
   app.enableCors({
-    origin: '*', // Permite todas as origens
+    origin: ['http://localhost:3001', 'https://meudominio.com'],
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Authorization',
   });
 
   await app.listen(3000);

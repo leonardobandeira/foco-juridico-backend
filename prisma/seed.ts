@@ -33,8 +33,6 @@ async function main() {
             { nome: 'Diferente', simbolo: '!=' },
         ],
     });
-
-    console.log('Dados iniciais inseridos com sucesso!');
 }
 
 main()
