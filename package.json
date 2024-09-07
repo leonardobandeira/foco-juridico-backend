@@ -28,6 +28,8 @@
     "@nestjs/swagger": "^7.4.0",
     "@nestjs/typeorm": "^10.0.2",
     "@prisma/client": "^5.18.0",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.5",
     "firebase-admin": "^12.3.1",

@@ -10,12 +10,12 @@ import { AlertaModule } from './alerta/alerta.module';
 import { AuthModule } from './auth/auth.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AgendadorModule } from './agendador/agendador.module';
-import { AnalistaModule } from './analista/analista.module';
+import { IndicadoresService } from './services/indicadores/indicadores.service';
 
 @Module({
-  imports: [AuthModule, UsuarioModule, PainelModule, IndicadorModule, AlertaModule, DbModule, ScheduleModule.forRoot(), AgendadorModule, AnalistaModule],
+  imports: [AuthModule, UsuarioModule, PainelModule, IndicadorModule, AlertaModule, DbModule, ScheduleModule.forRoot(), AgendadorModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, IndicadoresService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

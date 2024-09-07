@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { Alerta } from '@prisma/client';
 import { CronJob } from 'cron';
-import { AnalistaService } from 'src/analista/analista.service';
+import { AnalistaService } from 'src/services/analista/analista.service';
 
 @Injectable()
 export class AgendadorService {
