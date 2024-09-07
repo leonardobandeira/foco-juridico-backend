@@ -1,20 +1,24 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
+import { Alerta } from '@prisma/client';
 import { CronJob } from 'cron';
+import { AnalistaService } from 'src/analista/analista.service';
 
 @Injectable()
 export class AgendadorService {
-  constructor(private schedulerRegistry: SchedulerRegistry) { }
+  constructor(private schedulerRegistry: SchedulerRegistry,
+  private analista:AnalistaService) { }
   private readonly logger = new Logger(AgendadorService.name);
 
-  agendar(name: string, frequencia: number) {
-    const interval = Math.floor(60 / frequencia);
+  agendar(alerta:Alerta) {
+    const interval = Math.floor(60 / alerta.frequencia);
 
     const job = new CronJob(`*/${interval} * * * * *`, () => {
-      this.logger.warn(`Execultando alerta => ${name}`);
+      this.logger.warn(`Execultando alerta => ${alerta.nome}`);
+      this.analista.analisar(alerta)
     });
 
-    this.schedulerRegistry.addCronJob(name, job);
+    this.schedulerRegistry.addCronJob(alerta.nome, job);
     job.start();
   }
 

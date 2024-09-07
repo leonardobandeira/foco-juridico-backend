@@ -56,7 +56,7 @@ export class AlertaController {
   }
 
   private agendarProcessoAlerta(alerta: Alerta) {
-    this.agendadorService.agendar(alerta.nome, alerta.frequencia);
+    this.agendadorService.agendar(alerta);
   }
 
   private cancelarProcessoAgendado(nome: string) {

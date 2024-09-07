@@ -10,9 +10,10 @@ import { AlertaModule } from './alerta/alerta.module';
 import { AuthModule } from './auth/auth.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AgendadorModule } from './agendador/agendador.module';
+import { AnalistaModule } from './analista/analista.module';
 
 @Module({
-  imports: [AuthModule, UsuarioModule, PainelModule, IndicadorModule, AlertaModule, DbModule, ScheduleModule.forRoot(), AgendadorModule],
+  imports: [AuthModule, UsuarioModule, PainelModule, IndicadorModule, AlertaModule, DbModule, ScheduleModule.forRoot(), AgendadorModule, AnalistaModule],
   controllers: [AppController],
   providers: [AppService],
 })
