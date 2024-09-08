@@ -14,7 +14,6 @@ export class AgendadorService {
     const interval = Math.floor(60 / alerta.frequencia);
 
     const job = new CronJob(`*/${interval} * * * * *`, () => {
-      this.logger.warn(`Execultando alerta => ${alerta.nome}`);
       this.analista.analisar(alerta)
     });
 

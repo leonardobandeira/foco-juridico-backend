@@ -6,10 +6,11 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AgendadorService } from 'src/agendador/agendador.service';
 import { AnalistaService } from 'src/services/analista/analista.service';
 import { IndicadoresService } from 'src/services/indicadores/indicadores.service';
+import { EmailService } from 'src/services/email/email.service';
 
 @Module({
   controllers: [AlertaController],
   imports: [DbModule, ScheduleModule.forRoot()],
-  providers: [AlertaRepository, AgendadorService, AnalistaService, IndicadoresService]
+  providers: [AlertaRepository, AgendadorService, AnalistaService, IndicadoresService, EmailService]
 })
 export class AlertaModule {}

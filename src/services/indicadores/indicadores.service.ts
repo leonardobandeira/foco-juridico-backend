@@ -15,6 +15,15 @@ export class IndicadoresService {
               endereco: true,
             },
           },
+          alertas: {
+            select: {
+              usuario: {
+                select: {
+                  email: true,
+                },
+              },
+            },
+          },
         },
       });
 
